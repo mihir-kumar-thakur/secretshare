@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Secretshare</title>
+    <title>One Time Secret Sharing | End To End Encrypted | Private and Secure</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -12,8 +12,25 @@
   </head>
 
   <body>
-    <main class="container mx-auto mt-28 px-5 flex">
-      <%= yield %>
+    <main class="flex-col flex-1 md:justify-center w-full">
+      <div class="bg-gray-100 text-white">
+        <div class="mx-auto max-w-screen-lg px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
+          <div class="mx-auto  text-center">
+            <h1 class="text-3xl font-bold text-gray-900 sm:text-4xl mb-4">One Time Secret Share</h1>
+            <h3 class="text-2xl font-bold sm:text-2xl text-gray-900">End To End Encrypted Self Destructing Link</h3>
+
+            <p class="mt-4 text-gray-900">
+              Create Single-Use Links for Safely Sharing Confidential Data
+            </p>
+
+            <p class="mt-4 text-gray-900">
+              Prevent Sensitive Data from Being Stored in Your Email and Chat Histories
+            </p>
+
+            <%= yield %>
+          </div>
+        </div>
+      </div>
     </main>
   </body>
 </html>
