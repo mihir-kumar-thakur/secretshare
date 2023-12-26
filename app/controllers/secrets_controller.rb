@@ -1,5 +1,6 @@
 class SecretsController < ApplicationController
-  before_action :set_secret, only: [:show]
+  skip_before_action :verify_authenticity_token, only: [:burn]
+  before_action :set_secret, only: [:show, :burn]
 
   # GET /secrets/new
   def new
@@ -10,7 +11,9 @@ class SecretsController < ApplicationController
   end
 
   def burn
-    binding.break
+    @secret.burn!
+
+    head :ok
   end
 
   # POST /secrets or /secrets.json

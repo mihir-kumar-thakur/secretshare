@@ -5,7 +5,8 @@ export default class extends Controller {
   static values = { message: String }
   static targets = ["message"];
 
-  async decrypt() {
+  async decrypt(event) {
+    const token = window.location.pathname.split("/secrets/")[1]
     const url_secrets = window.location.hash.split("secrets")
     const iv = url_secrets[0].substring(1)
     const key = url_secrets[1]
@@ -15,5 +16,11 @@ export default class extends Controller {
     const decryptedMessage = await AESCrypto.decrypt(AESCrypto.unpack(this.messageValue), imported_key, AESCrypto.unpack(iv))
 
     messageElement.value = decryptedMessage;
+
+    const requestOptions = { method: 'POST' };
+    fetch(`${token}/burn`, requestOptions)
+        .then(response => console.log("Secret message burned!!!!"))
+
+    event.target.textContent = "Secret Burned"
   }
 }
