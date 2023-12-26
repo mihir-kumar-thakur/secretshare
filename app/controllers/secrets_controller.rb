@@ -1,11 +1,16 @@
 class SecretsController < ApplicationController
+  before_action :set_secret, only: [:show]
+
   # GET /secrets/new
   def new
     @secret = Secret.new
   end
 
   def show
-    @secret = Secret.where(access_token: params[:id]).first
+  end
+
+  def burn
+    binding.break
   end
 
   # POST /secrets or /secrets.json
@@ -23,9 +28,9 @@ class SecretsController < ApplicationController
   private
 
   # Use callbacks to share common setup or constraints between actions.
-  # def set_secret
-  #   @secret = Secret.find(params[:id])
-  # end
+  def set_secret
+    @secret = Secret.where(access_token: params[:token]).take
+  end
 
   # Only allow a list of trusted parameters through.
   def secret_params
