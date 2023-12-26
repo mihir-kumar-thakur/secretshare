@@ -2,17 +2,17 @@ import { Controller } from "@hotwired/stimulus";
 import AESCrypto from "../../src/aes_crypto";
 
 export default class extends Controller {
-  static targets = ["content"];
+  static targets = ["message"];
 
   async encrypt(event) {
     event.preventDefault();
 
     const form = this.element;
-    const contentElement = this.contentTarget;
-    const content_value = contentElement.value;
+    const messageElement = this.messageTarget;
+    const message_value = messageElement.value;
 
-    if (content_value !== "") {
-      const { cipher, iv, key } = await AESCrypto.encrypt(content_value);
+    if (message_value !== "") {
+      const { cipher, iv, key } = await AESCrypto.encrypt(message_value);
 
       const cipher_text = AESCrypto.pack(cipher);
       const iv_text = AESCrypto.pack(iv);
@@ -21,7 +21,7 @@ export default class extends Controller {
       window.sessionStorage.setItem('iv_text', iv_text);
       window.sessionStorage.setItem('key', exported_key);
 
-      contentElement.value = cipher_text;
+      messageElement.value = cipher_text;
     }
 
     form.requestSubmit();

@@ -2,18 +2,18 @@ import { Controller } from "@hotwired/stimulus";
 import AESCrypto from "../../src/aes_crypto";
 
 export default class extends Controller {
-  static values = { content: String }
-  static targets = ["content"];
+  static values = { message: String }
+  static targets = ["message"];
 
   async decrypt() {
-    const url_secrets = window.location.hash.split("secret")
+    const url_secrets = window.location.hash.split("secrets")
     const iv = url_secrets[0].substring(1)
     const key = url_secrets[1]
-    const contentElement = this.contentTarget;
+    const messageElement = this.messageTarget;
 
     const imported_key = await AESCrypto.importKey(key)
-    const decryptedContent = await AESCrypto.decrypt(AESCrypto.unpack(this.contentValue), imported_key, AESCrypto.unpack(iv))
+    const decryptedMessage = await AESCrypto.decrypt(AESCrypto.unpack(this.messageValue), imported_key, AESCrypto.unpack(iv))
 
-    contentElement.value = decryptedContent;
+    messageElement.value = decryptedMessage;
   }
 }

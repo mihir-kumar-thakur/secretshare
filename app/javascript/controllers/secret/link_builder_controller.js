@@ -9,7 +9,7 @@ export default class extends Controller {
     const iv = window.sessionStorage.getItem('iv_text');
     const key = window.sessionStorage.getItem('key');
 
-    const link = `${window.location.origin}/secrets/${slug}#${iv}secret${key}`
+    const link = `${window.location.origin}/secrets/${slug}#${iv}secrets${key}`
 
     this.linkTarget.value = link;
   }

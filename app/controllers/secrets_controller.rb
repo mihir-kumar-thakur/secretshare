@@ -29,11 +29,11 @@ class SecretsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_secret
-    @secret = Secret.where(access_token: params[:token]).take
+    @secret = Secret.where(token: params[:token]).take
   end
 
   # Only allow a list of trusted parameters through.
   def secret_params
-    params.require(:secret).permit(:content)
+    params.require(:secret).permit(:message)
   end
 end

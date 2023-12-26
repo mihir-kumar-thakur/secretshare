@@ -15,14 +15,15 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_21_151934) do
   enable_extension "plpgsql"
 
   create_table "secrets", force: :cascade do |t|
-    t.text "content"
+    t.text "message"
     t.boolean "shared", default: false
-    t.boolean "viewed", default: false
-    t.string "access_token"
+    t.boolean "burned", default: false
+    t.datetime "burned_at"
+    t.string "token"
     t.string "algo_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["access_token"], name: "index_secrets_on_access_token", unique: true
+    t.index ["token"], name: "index_secrets_on_token", unique: true
   end
 
 end
