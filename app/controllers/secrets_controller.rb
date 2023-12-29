@@ -11,7 +11,7 @@ class SecretsController < ApplicationController
   end
 
   def burn
-    @secret.burn!
+    @secret.destroy
 
     head :ok
   end
