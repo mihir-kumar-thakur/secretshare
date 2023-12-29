@@ -1,4 +1,4 @@
-import Base64EncoderDecoder from "./base64_encoder_decoder"
+import Base64EncoderDecoder from "src/base64_encoder_decoder"
 
 class AESCrypto {
   static async encrypt(data) {

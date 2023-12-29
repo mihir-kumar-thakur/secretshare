@@ -1,5 +1,6 @@
 import { Controller } from "@hotwired/stimulus";
-import AESCrypto from "../../src/aes_crypto";
+import AESCrypto from "src/aes_crypto";
+
 
 export default class extends Controller {
   static values = { message: String }
